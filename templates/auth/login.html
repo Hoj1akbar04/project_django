@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Log In</h1>
+<form method="POST">
+    {% csrf_token %}
+    <label for="username">Username: </label>
+    <input type="text" id="username" name="username"> <br>
+
+    <br><label for="password">Password: </label>
+    <input type="password" id="password" name="password"> <br>
+
+    <input type="checkbox" id="keepSignedIn" name="keepSignedIn">
+        <label for="keepSignedIn">Keep me Signed In</label><br><br>
+    <button type="submit">Login</button><br>
+
+    <br><b><a href="{% url 'register' %}">Sign Up</a></b>
+</form>
+</body>
+</html>

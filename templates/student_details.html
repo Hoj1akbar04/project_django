@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>This is Student detail page</h1>
+    <p>About Student</p><br>
+    <ul>
+        <li>
+            First name: {{ student.first_name }}
+        </li>
+        <li>
+            Last name: {{ student.last_name }}
+        </li>
+        <li>
+            Username: {{ student.username }}
+        </li>
+        <li>
+            Email: {{ student.email }}
+        </li>
+        <li>
+            Address:
+                <ul>
+                    <li>
+                        Country: {{ student.address.country }}
+                    </li>
+                    <li>
+                        City: {{ student.address.city }}
+                    </li>
+                    <li>
+                        Street: {{ student.address.street }}
+                    </li>
+                </ul>
+        </li>
+    </ul>
+    <br><a href="{% url 'student' %}">Back</a>
+</body>
+</html>

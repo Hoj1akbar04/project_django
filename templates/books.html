@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>This is the library books page</h1>
+    <p>
+        Information about books can be obtained
+    </p>
+    <h2>Name: {{ book.name }}</h2>
+    <h3>Description: </h3>
+    <p>
+        {{ book.description }}
+    </p>
+    Price: {{ book.price }} <br>
+    Count: {{ book.count }} <br>
+    Author: {{ book.authors.first_name}} <br>
+
+    <br><a href="{% url 'library' %}">Back</a>
+</body>
+</html>
