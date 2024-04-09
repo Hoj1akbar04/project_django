@@ -23,9 +23,10 @@ class Students(models.Model):
     password = models.CharField(max_length=10)
     email = models.EmailField()
     gender = models.CharField(max_length=10)
+    image = models.ImageField(upload_to='media/students/')
     birth_date = models.DateField(null=True, blank=True)
     address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=30, choices=StudentRole.choices, default=StudentRole.bakalavr)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} {self.username} {self.email} {self.gender} {self.birth_date}"
+        return f"{self.first_name} {self.last_name} "

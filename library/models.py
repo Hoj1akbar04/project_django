@@ -13,7 +13,7 @@ class Author(models.Model):
 
 
 class Comments(models.Model):
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(Students, on_delete=models.CASCADE)
     comment = models.TextField()
     published_date = models.DateField(auto_now_add=True)
@@ -26,6 +26,7 @@ class Books(models.Model):
     name = models.CharField(max_length=40)
     description = models.TextField()
     price = models.FloatField()
+    image = models.ImageField(upload_to='media/books/')
     count = models.IntegerField(default=1)
     authors = models.ForeignKey(Author, on_delete=models.CASCADE)
     comments = models.ManyToManyField(Comments, blank=True)

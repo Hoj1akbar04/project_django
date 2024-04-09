@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>This is Student detail page</h1>
+    {% csrf_token %}
     <p>About Student</p><br>
     <ul>
         <li>
@@ -19,6 +20,12 @@
         </li>
         <li>
             Email: {{ student.email }}
+        </li>
+        <li>
+            Birth Date: {{ student.birth_date }}
+        </li>
+        <li>
+            Gender: {{ student.gender }}
         </li>
         <li>
             Address:

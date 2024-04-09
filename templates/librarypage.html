@@ -15,17 +15,28 @@
     <p>
         Welcome to University library!
     </p>
-    <h3>BOOKS:</h3>
-    <ul>
-        {% for book in books %}
-        <li>
-            <h3>
-                <a href="{% url 'book-detail' book.id %}">{{ book.name }}</a>
-            </h3>
-        </li>
+    {% for book in books %}
+        <div class="card" style="width: 18rem;">
+          <img src="{{book.image.url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{book.name}}</h5>
+            <p class="card-text">Description: {{book.description}}</p>
+              <h5>Comments:</h5>
+              <p>
+                  <ol>
+                        {% for comment in book.comments.all %}
+                        <li>
+                            <b>Student:</b> {{ comment.user.first_name }} <br>
+                            <b>Text:</b> {{ comment.comment }}
+                        </li>
+                  {% endfor %}
+                  </ol>
+              </p>
+            <a href="{% url 'book-detail' book.id %}" class="btn btn-primary">Click</a>
+          </div>
+        </div>
     {% endfor %}
-    </ul>
-    <br><a href="{% url 'home' %}">Back</a>
+    <br><a href="{% url 'university' %}">Back</a>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
