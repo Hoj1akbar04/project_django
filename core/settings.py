@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     "import_export",
     'library',
     'student',
+    'users',
+    'blog',
+    'course',
 ]
 
 MIDDLEWARE = [

@@ -1,15 +1,33 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.models import User
+from blog.models import Blog
 from .forms import UserLoginForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from django.urls import reverse
 from django.views.generic import TemplateView
+from course.models import Course, Speciality, Teacher
+
+
+class LandingView(View):
+    def get(self, request):
+        specialities = Speciality.objects.all()
+        courses = Course.objects.all()
+        teachers = Teacher.objects.all()
+        blogs = Blog.objects.all()
+        context = {
+            'specialities': specialities,
+            'courses': courses,
+            'teachers': teachers,
+            'blogs': blogs
+        }
+        return render(request, 'main/index.html', context)
 
 
 class TermsOfServiceView(TemplateView):
     template_name = 'terms_of_service.html'
+
 
 class UserRegisterView(View):
     def get(self, request):
@@ -104,3 +122,6 @@ class UserLogOutView(View):
     def get(self, request):
         logout(request)
         return redirect("university")
+
+
+

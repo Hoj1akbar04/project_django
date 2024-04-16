@@ -10,6 +10,8 @@ urlpatterns = [
     path("", include("users.urls")),
     path('', include("library.urls")),
     path("", include("student.urls")),
+    path("", include("course.urls")),
+    path("", include("blog.urls")),
     path('', HomePage.as_view(), name="university")
 ]
 
