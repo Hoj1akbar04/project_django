@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="card" style="width: 18rem;">
+    <form method="POST">
+        {% csrf_token %}
+        <label for="title">Title:</label>
+        <input id="title" class="form-control" placeholder="Enter title" name="title" value="{{ course.title }}">
+
+        <label for="description">Description:</label>
+        <input id="description" class="form-control" placeholder="Enter description" name="description" value="{{ course.description }}">
+
+        <label for="price">Price:</label>
+        <input id="price" class="form-control" placeholder="Enter price" name="price" value="{{ course.price }}">
+
+        <label for="rating">Rating:</label>
+        <input id="rating" class="form-control" placeholder="Enter rating" name="rating" value="{{ course.rating }}">
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -2,6 +2,21 @@
 {% load static %}
 {% block content %}
 
+<!-- Header Start -->
+    <div class="container-fluid page-header" style="margin-bottom: 90px;">
+        <div class="container">
+            <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
+                <h3 class="display-4 text-white text-uppercase">Blog</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="{% url 'landing' %}">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">Blog</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
     <!-- Blog Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
@@ -45,14 +60,13 @@
     
                 <div class="col-lg-4 mt-5 mt-lg-0">
                     <!-- Author Bio -->
-                    {% for teacher in teachers %}
                     <div class="d-flex flex-column text-center bg-dark rounded mb-5 py-5 px-4">
-                        <img src="{{ teacher.image.url }}" class="img-fluid rounded-circle mx-auto mb-3" style="width: 100px;">
-                        <h3 class="text-primary mb-3">{{ teacher.ful_name }}</h3>
+                        <img src="{% static 'main/img/user.jpg' %}" class="img-fluid rounded-circle mx-auto mb-3" style="width: 100px;">
+                        <h3 class="text-primary mb-3">John Doe</h3>
                         <h3 class="text-uppercase mb-4" style="letter-spacing: 5px;">Tag Cloud</h3>
-                        <p class="text-white m-0">{{ teacher.position }}</p>
+                        <p class="text-white m-0">Conset elitr erat vero dolor ipsum et diam, eos dolor lorem, ipsum sit no ut est  ipsum erat kasd amet elitr</p>
                     </div>
-                    {% endfor %}
+
                     <!-- Search Form -->
                     <div class="mb-5">
                         <form action="">

@@ -112,7 +112,7 @@
                                     <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>{{ course.active_users }}</small>
                                     <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>{{ course.duration_hours }}h {{ course.duration_minutes }}m</small>
                                 </div>
-                                <a class="h5" href="">{{ course.title }}</a>
+                                <a class="h5" href="{% url 'course-detail' course.id%}">{{ course.title }}</a>
                                 <div class="border-top mt-4 pt-4">
                                     <div class="d-flex justify-content-between">
                                         <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>{{ course.raiting }}<small></small></h6>
@@ -163,12 +163,27 @@
                                 <div class="form-group">
                                     <input type="email" class="form-control border-0 p-4" placeholder="Your email" required="required" />
                                 </div>
+                                <!--<div class="form-group">
+                                    <label for="password_1"><i class="zmdi zmdi-lock"></i></label>
+                                    <input type="password" name="password_1" id="password_1" placeholder="Password" class="form-control border-0 p-4" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="password_2"><i class="zmdi zmdi-lock"></i></label>
+                                    <input type="password" name="password_2" id="password_2" placeholder="Repeat your password" class="form-control border-0 p-4" />
+                                </div>-->
+                                <div class="form-group">
+                                    <input type="password" name="password_1" id="password_1" class="form-control border-0 p-4" placeholder="Password" required="required" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password_2" id="password_2" class="form-control border-0 p-4" placeholder="Repeat your password" required="required" />
+                                </div>
+
                                 <div class="form-group">
                                     <select class="custom-select border-0 px-4" style="height: 47px;">
                                         <option selected>Select a course</option>
                                         <option value="1">Course 1</option>
-                                        <option value="2">Course 1</option>
-                                        <option value="3">Course 1</option>
+                                        <option value="2">Course 2</option>
+                                        <option value="3">Course 3</option>
                                     </select>
                                 </div>
                                 <div>

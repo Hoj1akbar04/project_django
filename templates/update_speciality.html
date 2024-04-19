@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="card" style="width: 18rem;">
+    <form method="POST">
+        {% csrf_token %}
+        <label for="title">Title:</label>
+        <input id="title" class="form-control" placeholder="Enter title" name="title" value="{{ course.title }}">
+
+        <label for="image">Image:</label>
+        <input type="file" id="image" class="form-control" name="image" value="{{ speciality.image }}">
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+
+{% endblock %}

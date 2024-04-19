@@ -7,7 +7,6 @@ class Speciality(models.Model):
     update_date = models.DateField(auto_now=True)
     create_date = models.DateField(auto_now_add=True)
 
-
     def __str__(self):
         return f"{self.title}"
 
@@ -32,7 +31,7 @@ class Course(models.Model):
     create_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.title}, {self.price_type}, {self.active_users}, {self.description}"
+        return f"{self.title}, {self.price_type}, {self.active_users}, {self.description}, {self.image}"
 
 
 class Position(models.Model):

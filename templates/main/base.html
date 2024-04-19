@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>ECOURSES - Online Courses HTML Template</title>
+    <title>ONLINE EDUCATION - Online Courses HTML Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -32,7 +32,7 @@
         <div class="row align-items-center py-4 px-xl-5">
             <div class="col-lg-3">
                 <a href="" class="text-decoration-none">
-                    <h1 class="m-0"><span class="text-primary">E</span>COURSES</h1>
+                    <h1 class="m-0"><span class="text-primary">ONLINE </span> EDUCATION</h1>
                 </a>
             </div>
             <div class="col-lg-3 text-right">
@@ -40,7 +40,7 @@
                     <i class="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
                     <div class="text-left">
                         <h6 class="font-weight-semi-bold mb-1">Our Office</h6>
-                        <small>123 Street, New York, USA</small>
+                        <small>Street, Tashkent, UZB</small>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                     <i class="fa fa-2x fa-envelope text-primary mr-3"></i>
                     <div class="text-left">
                         <h6 class="font-weight-semi-bold mb-1">Email Us</h6>
-                        <small>info@example.com</small>
+                        <small>online_course@email.com</small>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                     <i class="fa fa-2x fa-phone text-primary mr-3"></i>
                     <div class="text-left">
                         <h6 class="font-weight-semi-bold mb-1">Call Us</h6>
-                        <small>+012 345 6789</small>
+                        <small>+99 888 888 88 77</small>
                     </div>
                 </div>
             </div>
@@ -77,19 +77,16 @@
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9;">
                     <div class="navbar-nav w-100">
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link" data-toggle="dropdown">Web Design <i class="fa fa-angle-down float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                                <a href="" class="dropdown-item">HTML</a>
-                                <a href="" class="dropdown-item">CSS</a>
-                                <a href="" class="dropdown-item">jQuery</a>
+                        {% for speciality in specialities %}
+                            <div class="nav-item dropdown">
+                                <a href="{% url 'speciality-detail' speciality.id %}" class="nav-item nav-link">{{ speciality.title }}</a>
+                                <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                    <a href="" class="dropdown-item"></a>
+                                </div>
                             </div>
-                        </div>
-                        <a href="" class="nav-item nav-link">Apps Design</a>
-                        <a href="" class="nav-item nav-link">Marketing</a>
-                        <a href="" class="nav-item nav-link">Research</a>
-                        <a href="" class="nav-item nav-link">SEO</a>
+                        {% endfor %}
                     </div>
+                    <a href="{% url 'create-speciality' %}" class="btn btn-primary">Add speciality</a>
                 </nav>
             </div>
             <div class="col-lg-9">
@@ -101,21 +98,34 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav py-0">
-                            <a href="{% url 'landing' %}" class="nav-item nav-link active">Home</a>
-                            <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
-                            <a href="{% url 'courses' %}" class="nav-item nav-link">Courses</a>
-                            <a href="{% url 'teachers' %}" class="nav-item nav-link">Teachers</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="{% url 'blog' %}" class="dropdown-item">Blog List</a>
-                                    <a href="single.html" class="dropdown-item">Blog Detail</a>
+                        {% if request.user.is_authenticated %}
+                            <div class="navbar-nav py-0">
+                                <a href="{% url 'landing' %}" class="nav-item nav-link active">Home</a>
+                                <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+                                <a href="{% url 'courses' %}" class="nav-item nav-link">Courses</a>
+                                <a href="{% url 'teachers' %}" class="nav-item nav-link">Teachers</a>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
+                                    <div class="dropdown-menu rounded-0 m-0">
+                                        <a href="{% url 'blog' %}" class="dropdown-item">Blog List</a>
+                                        <a href="{% url 'single-blog' %}" class="dropdown-item">Blog Detail</a>
+                                    </div>
                                 </div>
+                                <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
                             </div>
-                            <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
-                        </div>
-                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="">Join Now</a>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    Account
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'login' %}">Sign Up</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'register' %}">Sign In</a></li>
+                                </ul>
+                            </div>
+
+                        {% endif %}
                     </div>
                 </nav>
             </div>
@@ -126,9 +136,8 @@
     {% block content %}
     {% endblock %}
 
-<!-- Back to Top -->
+    <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

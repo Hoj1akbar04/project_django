@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+    {% csrf_token %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ course.image.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h2>{{ course.title }}</h2>
+            <p class="card-text">{{ course.description }}</p>
+        </div>
+
+        <a class="btn btn-primary" href="{% url 'course-update' course.id %}">Update</a>
+        <a class="btn btn-danger" href="{% url 'course-delete' course.id %}">Delete</a>
+
+    </div>
+{% endblock %}

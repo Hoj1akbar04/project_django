@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+    {% csrf_token %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ speciality.image.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h2>{{ speciality.title }}</h2>
+        </div>
+        <a class="btn btn-primary" href="{% url 'update-speciality' speciality.id %}">Update</a>
+        <a class="btn btn-danger" href="{% url 'delete-speciality' speciality.id %}">Delete</a>
+
+    </div>
+{% endblock %}

@@ -47,4 +47,3 @@ class CommentsAdmin(ImportExportModelAdmin):
     search_fields = ("comment", "author", )
     autocomplete_fields = ("author", "user",)
 
-

@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="card" style="width: 18rem;">
+    <form method="POST">
+        {% csrf_token %}
+        <label for="title"></label>
+        <input id="title" class="form-control" placeholder="Enter title" name="title">
+
+        <label for="description"></label>
+        <input id="description" class="form-control" placeholder="Enter description" name="description">
+
+        <label for="price"></label>
+        <input id="price" class="form-control" placeholder="Enter price" name="price" type="number">
+
+        <label for="image"></label>
+        <input type="file" id="image" class="form-control" name="image" accept="image/*" required>
+        <!--<input id="image" class="form-control" placeholder="Enter image" name="image" type="file">-->
+
+        <label for="rating"></label>
+        <input id="rating" class="form-control" placeholder="Enter rating" name="rating" type="number">
+
+        <button type="submit" class="btn btn-primary">Add course</button>
+    </form>
+</div>
+
+{% endblock %}
