@@ -100,7 +100,7 @@ class ForgetPasswordView(View):
         email = request.POST.get('email')
         user = User.objects.filter(email=email).first()
         if user:
-            reset_password_link = reverse('reset_password', kwargs={'uidb64': str(user.id)})
+            reset_password_link = reverse('reset-password', kwargs={'uidb64': str(user.id)})
             # reset_password_link foydalanuvchiga email orqali yuboriladi
             return render(request, 'reset_password.html')
         else:
