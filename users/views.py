@@ -20,7 +20,15 @@ class LandingView(View):
             'specialities': specialities,
             'courses': courses,
             'teachers': teachers,
-            'blogs': blogs
+            'blogs': blogs,
+            'active': {
+                "home": "active",
+                "about": None,
+                "contact": None,
+                "course": None,
+                "blog": None,
+                "teacher": None,
+            }
         }
         return render(request, 'main/index.html', context)
 

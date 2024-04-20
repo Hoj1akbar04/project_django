@@ -1,9 +1,9 @@
 from django.db import models
-
+from .helpers import SaveMediaFile, Choices
 
 class Speciality(models.Model):
     title = models.CharField(max_length=40)
-    image = models.ImageField(upload_to='course/speciality/')
+    image = models.ImageField(upload_to=SaveMediaFile.image_speciality)
     update_date = models.DateField(auto_now=True)
     create_date = models.DateField(auto_now_add=True)
 
@@ -12,17 +12,15 @@ class Speciality(models.Model):
 
 
 class Course(models.Model):
-    class PriceType(models.TextChoices):
-        s = "USD", "$"
-        sum = "UZS", "SO'M"
-
     title = models.CharField(max_length=40)
     description = models.TextField()
+    slug = models.SlugField(verbose_name='Slug', max_length=200)
     course_count = models.IntegerField(default=0)
-    image = models.ImageField(upload_to='course/course/')
+    image = models.ImageField(upload_to=SaveMediaFile.image_course)
     speciality = models.ManyToManyField(Speciality)
     price = models.FloatField()
-    price_type = models.CharField(max_length=8, choices=PriceType.choices, default=PriceType.sum)
+    status = models.CharField(max_length=15, choices=Choices.CourseStatus.choices, default=Choices.CourseStatus.DRAFT)
+    price_type = models.CharField(max_length=8, choices=Choices.PriceType.choices, default=Choices.PriceType.sum)
     active_users = models.PositiveIntegerField(default=0)
     rating = models.FloatField()
     duration_hours = models.IntegerField(default=0)

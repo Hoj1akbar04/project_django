@@ -7,26 +7,54 @@ from django.contrib.auth.models import User
 class CourseView(View):
     def get(self, request):
         search = request.GET.get('search')
+        specialities = Speciality.objects.all()
         if not search:
-            courses = Course.objects.all()
+            courses = Course.objects.filter(status='pb')
             context = {
                 'courses': courses,
-                'search': search
+                'search': search,
+                'specialities': specialities,
+                'active': {
+                    "home": None,
+                    "about": None,
+                    "contact": None,
+                    "course": "active",
+                    "blog": None,
+                    "teacher": None,
+                }
             }
             return render(request, 'main/course.html', context)
 
         else:
-            courses = Course.objects.filter(title__icontains=search)
+            courses = Course.objects.filter(title__icontains=search, status='pb')
             if courses:
                 context = {
                     'courses': courses,
-                    'search': search
+                    'search': search,
+                    'specialities': specialities,
+                    'active': {
+                        "home": None,
+                        "about": None,
+                        "contact": None,
+                        "course": "active",
+                        "blog": None,
+                        "teacher": None,
+                    }
                 }
                 return render(request, 'main/course.html', context)
             else:
                 context = {
                     'courses': courses,
-                    'search': search
+                    'search': search,
+                    'specialities': specialities,
+                    'active': {
+                        "home": None,
+                        "about": None,
+                        "contact": None,
+                        "course": "active",
+                        "blog": None,
+                        "teacher": None,
+                    }
                 }
                 return render(request, 'main/course.html', context)
 
@@ -34,32 +62,76 @@ class CourseView(View):
 class TeacherView(View):
     def get(self, request):
         teachers = Teacher.objects.all()
+        specialities = Speciality.objects.all()
         context = {
-            'teachers': teachers
+            'teachers': teachers,
+            'specialities': specialities,
+            'active': {
+                "home": None,
+                "about": None,
+                "contact": None,
+                "course": None,
+                "blog": None,
+                "teacher": "active",
+            }
         }
         return render(request, 'main/teacher.html', context)
 
 
 class AboutView(View):
     def get(self, request):
-        return render(request, 'main/about.html')
+        specialities = Speciality.objects.all()
+        context = {
+            'specialities': specialities,
+            'active': {
+                "home": None,
+                "about": "active",
+                "contact": None,
+                "course": None,
+                "blog": None,
+                "teacher": None,
+            }
+        }
+        return render(request, 'main/about.html', context)
 
 
 class ContactView(View):
     def get(self, request):
-        return render(request, 'main/contact.html')
+        specialities = Speciality.objects.all()
+        context = {
+            'specialities': specialities,
+            'active': {
+                "home": None,
+                "about": None,
+                "contact": "active",
+                "course": None,
+                "blog": None,
+                "teacher": None,
+            }
+        }
+        return render(request, 'main/contact.html', context)
 
 
 class CourseDetailView(View):
-    def get(self, request, id):
-        course = Course.objects.get(id=id)
-        return render(request, 'course_detail.html', {'course': course})
+    def get(self, request, slug):
+        course = Course.objects.get(slug=slug)
+        specialities = Speciality.objects.all()
+        context = {
+            'course': course,
+            'specialities': specialities,
+        }
+        return render(request, 'course_detail.html', context)
 
 
 class CourseUpdateView(View):
     def get(self, request, id):
         course = Course.objects.get(id=id)
-        return render(request, 'course_update.html', {'course': course})
+        specialities = Speciality.objects.all()
+        context = {
+            'course': course,
+            'specialities': specialities,
+        }
+        return render(request, 'course_update.html', context)
 
     def post(self, request, id):
         new_title = request.POST.get('title')
@@ -101,12 +173,21 @@ class CourseCreateView(View):
 class SpecialityDetailView(View):
     def get(self, request, id):
         speciality = Speciality.objects.get(id=id)
-        return render(request, 'speciality_detail.html', {'speciality': speciality})
+        specialities = Speciality.objects.all()
+        context = {
+            'specialities': specialities,
+            'speciality': speciality,
+        }
+        return render(request, 'speciality_detail.html', context)
 
 
 class SpecialityCreateView(View):
     def get(self, request):
-        return render(request, 'create_speciality.html')
+        specialities = Speciality.objects.all()
+        context = {
+            'specialities': specialities,
+        }
+        return render(request, 'create_speciality.html',context)
 
     def post(self, request):
         title = request.POST.get('title')
@@ -126,7 +207,13 @@ class SpecialityDeleteView(View):
 class SpecialityUpdateView(View):
     def get(self, request, id):
         speciality = Speciality.objects.get(id=id)
-        return render(request, 'update_speciality.html', {'speciality': speciality})
+        specialities = Speciality.objects.all()
+
+        context = {
+            'specialities': specialities,
+            'speciality': speciality
+        }
+        return render(request, 'update_speciality.html', context)
 
     def post(self, request, id):
         new_title = request.POST.get('title')
